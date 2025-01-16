@@ -15,16 +15,18 @@ def main():
     player = Player(x = SCREEN_WIDTH / 2, y = SCREEN_HEIGHT / 2)
 
     while(True):
+        ## update logic
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
 
+        dt += clock.tick(60) / 1000
+        player.update(dt)
         
         #draw
         screen.fill("black")
         player.draw(screen)
         
-        dt += clock.tick(60) / 1000
 
         #last
         pygame.display.flip()
