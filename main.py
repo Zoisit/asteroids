@@ -25,7 +25,7 @@ def main():
     Player.containers = (updatable , drawable)
     player = Player(x = SCREEN_WIDTH / 2, y = SCREEN_HEIGHT / 2)
 
-    Shot.containers = (updatable , drawable)
+    Shot.containers = (shots, updatable , drawable)
     
 
     while(True):
@@ -43,6 +43,11 @@ def main():
             if a.check_collision(player):
                 print("Game over!")
                 sys.exit()
+            for shot in shots:
+                if a.check_collision(shot):
+                    shot.kill()
+                    a.split()
+                    continue
         
         #draw
         screen.fill("black")
